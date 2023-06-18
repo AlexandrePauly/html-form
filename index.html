@@ -1,0 +1,108 @@
+<!DOCTYPE html> 
+<html lang="fr">
+    <head>
+        <meta name="author" content="Alexandre PAULY">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+        <!-- Police -->
+        <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
+        <!-- JavaScript -->
+        <script src="js/random_image.js"></script> <!-- Changement aléatoire de l'image -->
+        
+        <title>Formulaire de contact</title>
+    </head>
+    
+    <body>        
+        <!-- Partie droite - Contenu de la page -->
+        <div id="container">
+            <div class="contact-box">
+                <!-- Image à gauche du formulaire -->
+                <div id="container-left"></div>
+                <!-- Formulaire de contact -->
+                <form id="container-right" action="index.html">
+                    <h1>Contact Us</h1>
+
+                    <!-- Date du jour -->
+                    <input type="date" id="today" class="field date" title="Date du contact" disabled="disabled">
+
+                    <!-- balise script temporaire -->
+                    <script>document.getElementById("today").valueAsDate = new Date();</script>
+
+                    <!-- Nom de la personne -->
+                    <input type="text" class="field" placeholder="Entrez votre nom" title="" required>
+
+                    <!-- Prénom de la personne -->
+                    <input type="text" class="field" placeholder="Entrez votre prénom" title="" required>
+
+                    <!-- E-mail de la personne -->
+                    <input type="email" class="field" placeholder="Entre votre e-mail" title="" required>
+
+                    <!-- Genre de la personne -->
+                    <div class="field genre">
+                        <div>
+                            <input type="radio" name="sexe" id="femme" value="Femme">
+                            <label for="femme">Femme</label>
+                        </div>
+                        <aside>
+                            <input type="radio" name="sexe" id="homme" value="Homme">
+                            <label for="homme">Homme</label>
+                        </aside>
+                    </div>
+
+                    <!-- Date de naissance de la personne -->
+                    <input id="max_day" type="date" class="field date" title="Date d'anniversaire" min="1900-01-01" max="">
+
+                    <!-- Date du jour comme date maximale de naissance -->
+                    <script>
+                        var date = new Date();
+
+                        var current_date;
+
+                        if(date.getMonth() + 1 > 9){
+                            if(date.getDate()>9){
+                                current_date = (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate());
+                            }
+                            else{
+                                current_date = (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + "0" + date.getDate());
+                            }
+                        }
+                        else{
+                            if(date.getDate()>9){
+                                current_date = (date.getFullYear() + "-" + "0" + (date.getMonth() + 1) + "-" + date.getDate());
+                            }
+                            else{
+                                current_date = (date.getFullYear() + "-" + "0" + (date.getMonth() + 1) + "-" + "0" + date.getDate());
+                            }
+                        }
+
+                        document.getElementById("max_day").max = current_date;
+                    </script>
+
+                    <!-- Profession de la personne -->
+                    <div class="field job">
+                        <label for="professions">Fonction</label>
+                        <select id="profession" name="professions">
+                            <option value="enseignant">Enseignant</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="cadre">Cadre</option>
+                            <option value="agriculteur">Agriculteur</option>
+                            <option value="non renseigné">Non renseigné</option>
+                        </select>
+                    </div>
+
+                    <!-- Sujet du message de la personne -->
+                    <input type="text" class="field" placeholder="Entrez le sujet de votre e-mail" title="" required>
+
+                    <!-- Message de la personne -->
+                    <textarea placeholder="Message" class="field" title="" required></textarea>
+
+                    <!-- Boutton pour envoyer le message -->
+                    <button type="submit" class="button">Send</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
